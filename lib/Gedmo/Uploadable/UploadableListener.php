@@ -121,7 +121,7 @@ class UploadableListener extends MappedEventSubscriber
         foreach ($this->fileInfoObjects as $items) {
             foreach ($items as $info) {
 
-                $config = $configs[$info['identifier']];
+                $config = $configs;
                 $entity = $info['entity'];
 
                 // If the entity is in the identity map, it means it will be updated. We need to force the
@@ -229,7 +229,7 @@ class UploadableListener extends MappedEventSubscriber
         $uow = $om->getUnitOfWork();
         $meta = $om->getClassMetadata(get_class($object));
         $configs = $this->getConfiguration($om, $meta->name);
-        $config = $configs[$identifier];
+        $config = $configs;
 
         if (!$config || !isset($config['uploadable']) || !$config['uploadable']) {
             // Nothing to do
